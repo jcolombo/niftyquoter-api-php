@@ -24,6 +24,8 @@ These directories are gitignored and must **never** be committed:
 
 **Rule**: Unless explicitly instructed to place content elsewhere, all non-library output goes into `.ai/` or `.development/`. Never place planning docs, AI drafts, or scratch work in tracked directories.
 
+**Worktrees**: If working in a git worktree, read [docs/WORKTREES.md](docs/WORKTREES.md) first — `.ai/`, `.development/`, and `.claude/` must be read/written to the main repo, not the worktree copy.
+
 ## Documentation Index
 
 Reference these docs for deeper context before asking the user or making assumptions:
