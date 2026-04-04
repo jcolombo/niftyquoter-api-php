@@ -1,0 +1,35 @@
+# Dependencies
+/vendor/
+
+# AI agents & coding assistants (local-only, never publish)
+/.claude/
+/.zencoder/
+/.zenflow/
+/.ai/
+CLAUDEPLAN.md
+CODEXNOTES.md
+GEMININOTES.md
+
+# Local working directories (never publish)
+/.scratch/
+/.development/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE / editor
+/.idea/
+/.vscode/
+*.swp
+*.swo
+*~
+
+# Test artifacts
+/tests/validate-docker
+/tests/validation-results.log
+
+# Environment / credentials (never commit API keys)
+.env
+.env.*
+*.config.local.json
