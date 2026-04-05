@@ -178,14 +178,16 @@ abstract class AbstractCollection extends AbstractEntity implements \Iterator, \
             ? $resourceClass::WHERE_OPERATIONS
             : [];
 
-        $dataType = $whereOps[$prop] ?? null;
-
-        if ($dataType === null && Configuration::get('devMode')) {
+        if (!isset($whereOps[$prop]) && Configuration::get('devMode')) {
             \Jcolombo\NiftyquoterApiPhp\Utility\Error::handle(
                 \Jcolombo\NiftyquoterApiPhp\Utility\ErrorSeverity::WARN,
                 "WHERE property '{$prop}' not found in " . $resourceClass . '::WHERE_OPERATIONS'
             );
         }
+
+        // Look up data type from FIELDS constant (WHERE_OPERATIONS stores allowed operators, not types)
+        $fields = defined("{$resourceClass}::FIELDS") ? $resourceClass::FIELDS : [];
+        $dataType = $fields[$prop] ?? null;
 
         $this->whereConditions[] = RequestCondition::where($prop, $value, $operator, $dataType);
         return $this;
