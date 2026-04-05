@@ -11,6 +11,8 @@ use Jcolombo\NiftyquoterApiPhp\Utility\ErrorSeverity;
 
 abstract class AbstractEntity
 {
+    protected const REQUIRED_CONSTANTS = [];
+
     protected ?NiftyQuoter $connection = null;
 
     protected ?array $parentContext = null;
