@@ -10,6 +10,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 - `fetch()` now returns a single page of results instead of auto-paginating through all pages
 - Added `fetchAll()` for explicit opt-in auto-pagination when all records are needed
 
+### Fixed
+- `AbstractCollection::where()` was passing `WHERE_OPERATIONS[$prop]` (an array of allowed operators) as the `$dataType` parameter to `RequestCondition::where()` — now correctly looks up the data type from the `FIELDS` constant
+
 ## [0.5.0-alpha] - 2026-04-05
 
 ### Added

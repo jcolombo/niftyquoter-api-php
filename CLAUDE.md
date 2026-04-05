@@ -39,10 +39,20 @@ These directories are gitignored and must **never** be committed:
 
 This is not optional. Documentation that contradicts the code is worse than no documentation.
 
+## Changelog Rule (MANDATORY)
+
+**At the end of every session that changes functional code**, you MUST read [docs/CHANGELOG-GUIDE.md](docs/CHANGELOG-GUIDE.md) and update the `[Unreleased]` section of `CHANGELOG.md` accordingly.
+
+- Add entries for new features, behavior changes, bug fixes, removals, and breaking changes
+- Consolidate entries: if a new change impacts an existing `[Unreleased]` entry, revise it — don't add contradictory bullets
+- Use Conventional Commits prefixes (`feat:`, `fix:`, etc.) in commit messages
+- This is not optional. An accurate `[Unreleased]` section is required before ending any code-change session.
+
 ## Documentation Index
 
 Reference these docs for deeper context before asking the user or making assumptions:
 
 | Document | When to Read |
 |----------|-------------|
+| [docs/CHANGELOG-GUIDE.md](docs/CHANGELOG-GUIDE.md) | After any code change session — changelog maintenance rules and conventions |
 | [docs/TECH-STACK.md](docs/TECH-STACK.md) | PHP version rationale, dependencies, architecture patterns, API reference links |
