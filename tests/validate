@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# NiftyQuoter PHP SDK Test Runner
+# Usage: ./tests/validate [options]
+#
+# Options:
+#   --help              Show this help message
+#   --dry-run           Simulate test execution without API calls
+#   --read-only         Only run GET operations (no create/update/delete)
+#   --verbose           Enable verbose output
+#   --resource=<name>   Run tests for a specific resource only
+#   --stop-on-failure   Stop after first test failure
+#   --no-cleanup        Skip cleanup of test entities after run
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PHP_BIN="${PHP_BIN:-php}"
+
+exec "$PHP_BIN" "$SCRIPT_DIR/bootstrap.php" "$@"

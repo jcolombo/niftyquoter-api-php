@@ -13,6 +13,7 @@ GEMININOTES.md
 # Local working directories (never publish)
 /.scratch/
 /.development/
+/.docker/
 
 # OS files
 .DS_Store
@@ -28,6 +29,7 @@ Thumbs.db
 # Test artifacts
 /tests/validate-docker
 /tests/validation-results.log
+/tests/test-results.log
 
 # Environment / credentials (never commit API keys)
 .env

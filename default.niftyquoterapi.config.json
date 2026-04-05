@@ -1,0 +1,171 @@
+{
+    "connection": {
+        "url": "https://api.niftyquoter.com/api/v1/",
+        "defaultName": null,
+        "verify": true,
+        "timeout": 30
+    },
+    "path": {
+        "cache": null,
+        "logs": null
+    },
+    "enabled": {
+        "cache": false,
+        "logging": false
+    },
+    "rateLimit": {
+        "enabled": true,
+        "minDelayMs": 200,
+        "safetyBuffer": 1,
+        "maxRetries": 3,
+        "retryDelayMs": 2000,
+        "perMinute": 30,
+        "perHour": 1000
+    },
+    "log": {
+        "connections": false,
+        "requests": true
+    },
+    "devMode": false,
+    "testing": {
+        "enabled": true,
+        "api_key": null,
+        "email": null,
+        "prefix": "[TEST]",
+        "anchors": {},
+        "modes": {
+            "dry_run": false,
+            "verbose": false,
+            "stop_on_failure": false,
+            "cleanup_on_failure": true,
+            "interactive": true,
+            "read_only": false,
+            "list_limit": 5
+        },
+        "resources": {
+            "skip": [],
+            "only": []
+        },
+        "timeouts": {
+            "per_test": 30,
+            "per_group": 300,
+            "total": 1800
+        }
+    },
+    "error": {
+        "enabled": true,
+        "handlers": {
+            "notice": ["log"],
+            "warn": ["log"],
+            "fatal": ["log", "echo"]
+        },
+        "logFilename": "niftyquoter-errors.log",
+        "triggerPhpErrors": false,
+        "formatting": {}
+    },
+    "classMap": {
+        "defaultCollection": "Jcolombo\\NiftyquoterApiPhp\\Entity\\Collection\\EntityCollection",
+        "entity": {
+            "client": {
+                "type": "resource",
+                "resource": "Jcolombo\\NiftyquoterApiPhp\\Entity\\Resource\\Client",
+                "collectionKey": "clients"
+            },
+            "clients": {
+                "type": "collection",
+                "resourceKey": "client",
+                "collection": true
+            },
+            "proposal": {
+                "type": "resource",
+                "resource": "Jcolombo\\NiftyquoterApiPhp\\Entity\\Resource\\Proposal",
+                "collectionKey": "proposals"
+            },
+            "proposals": {
+                "type": "collection",
+                "resourceKey": "proposal",
+                "collection": true
+            },
+            "comment": {
+                "type": "resource",
+                "resource": "Jcolombo\\NiftyquoterApiPhp\\Entity\\Resource\\Comment",
+                "collectionKey": "comments"
+            },
+            "comments": {
+                "type": "collection",
+                "resourceKey": "comment",
+                "collection": "Jcolombo\\NiftyquoterApiPhp\\Entity\\Collection\\CommentCollection"
+            },
+            "note": {
+                "type": "resource",
+                "resource": "Jcolombo\\NiftyquoterApiPhp\\Entity\\Resource\\Note",
+                "collectionKey": "notes"
+            },
+            "notes": {
+                "type": "collection",
+                "resourceKey": "note",
+                "collection": "Jcolombo\\NiftyquoterApiPhp\\Entity\\Collection\\NoteCollection"
+            },
+            "contact": {
+                "type": "resource",
+                "resource": "Jcolombo\\NiftyquoterApiPhp\\Entity\\Resource\\Contact",
+                "collectionKey": "contacts"
+            },
+            "contacts": {
+                "type": "collection",
+                "resourceKey": "contact",
+                "collection": "Jcolombo\\NiftyquoterApiPhp\\Entity\\Collection\\ContactCollection"
+            },
+            "item": {
+                "type": "resource",
+                "resource": "Jcolombo\\NiftyquoterApiPhp\\Entity\\Resource\\Item",
+                "collectionKey": "items"
+            },
+            "items": {
+                "type": "collection",
+                "resourceKey": "item",
+                "collection": "Jcolombo\\NiftyquoterApiPhp\\Entity\\Collection\\ItemCollection"
+            },
+            "pricing_table": {
+                "type": "resource",
+                "resource": "Jcolombo\\NiftyquoterApiPhp\\Entity\\Resource\\PricingTable",
+                "collectionKey": "pricing_tables"
+            },
+            "pricing_tables": {
+                "type": "collection",
+                "resourceKey": "pricing_table",
+                "collection": "Jcolombo\\NiftyquoterApiPhp\\Entity\\Collection\\PricingTableCollection"
+            },
+            "service_template": {
+                "type": "resource",
+                "resource": "Jcolombo\\NiftyquoterApiPhp\\Entity\\Resource\\ServiceTemplate",
+                "collectionKey": "service_templates"
+            },
+            "service_templates": {
+                "type": "collection",
+                "resourceKey": "service_template",
+                "collection": true
+            },
+            "email_template": {
+                "type": "resource",
+                "resource": "Jcolombo\\NiftyquoterApiPhp\\Entity\\Resource\\EmailTemplate",
+                "collectionKey": "email_templates"
+            },
+            "email_templates": {
+                "type": "collection",
+                "resourceKey": "email_template",
+                "collection": true
+            },
+            "block": {
+                "type": "resource",
+                "resource": "Jcolombo\\NiftyquoterApiPhp\\Entity\\Resource\\TextBlock",
+                "collectionKey": "blocks"
+            },
+            "blocks": {
+                "type": "collection",
+                "resourceKey": "block",
+                "collection": true
+            }
+        }
+    }
+}
