@@ -16,7 +16,7 @@ use Jcolombo\NiftyquoterApiPhp\Utility\ErrorSeverity;
 /**
  * Static CRUD builder — constructs RequestAbstraction objects and delegates execution to the connection.
  *
- * @override OVERRIDE-001 WHERE compilation uses individual query parameters, not Paymo's joined string
+ * @override OVERRIDE-001 WHERE compilation uses individual query parameters
  */
 class Request
 {
@@ -164,7 +164,7 @@ class Request
     /**
      * Map RequestCondition[] to individual query parameters.
      *
-     * @override OVERRIDE-001 Uses individual named query params, not Paymo's joined WHERE string
+     * @override OVERRIDE-001 Uses individual named query params
      *
      * @param RequestCondition[] $conditions
      * @return array<string, string>

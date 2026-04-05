@@ -2,7 +2,7 @@
 
 ## What This Is
 
-A public PHP SDK for the [NiftyQuoter](https://niftyquoter.com) sales proposal API. Modeled after the `jcolombo/paymo-api-php` package — same structural patterns, conventions, and architecture.
+A public PHP SDK for the [NiftyQuoter](https://niftyquoter.com) sales proposal API.
 
 - **API Documentation**: https://niftyquoter.docs.apiary.io
 - **Namespace**: `Jcolombo\NiftyquoterApiPhp`

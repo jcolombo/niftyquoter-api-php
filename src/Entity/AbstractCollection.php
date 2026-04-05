@@ -10,7 +10,7 @@ use Jcolombo\NiftyquoterApiPhp\Request;
 use Jcolombo\NiftyquoterApiPhp\Utility\RequestCondition;
 
 /**
- * @override OVERRIDE-003 Pagination is 1-indexed (not 0-indexed like Paymo)
+ * @override OVERRIDE-003 Pagination is 1-indexed
  */
 abstract class AbstractCollection extends AbstractEntity implements \Iterator, \ArrayAccess, \Countable, \JsonSerializable
 {

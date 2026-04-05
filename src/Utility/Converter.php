@@ -11,7 +11,7 @@ class Converter
     /**
      * Map PROP_TYPES type string to PHP type name.
      *
-     * @override OVERRIDE-010: checks intEnum: prefix (not Paymo's enumInt:)
+     * @override OVERRIDE-010: checks intEnum: prefix
      */
     public static function getPrimitiveType(string $propType): string
     {

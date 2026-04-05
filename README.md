@@ -711,8 +711,6 @@ MIT — see [LICENSE](LICENSE) for details.
 
 Developed and maintained by [Joel Colombo](mailto:jc-dev@360psg.com) at [360 PSG, Inc.](https://360psg.com)
 
-Architecture modeled after [jcolombo/paymo-api-php](https://github.com/jcolombo/paymo-api-php).
-
 ---
 
 ## Changelog

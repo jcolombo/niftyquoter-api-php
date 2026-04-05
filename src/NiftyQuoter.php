@@ -39,7 +39,7 @@ class NiftyQuoter
     /**
      * Singleton factory. Returns existing instance for same credentials or creates new.
      *
-     * @override OVERRIDE-002: Two explicit params, not Paymo's polymorphic string|array.
+     * @override OVERRIDE-002: Two explicit params for email + API key auth.
      */
     public static function connect(string $email, string $apiKey, ?string $url = null): self
     {

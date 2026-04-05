@@ -28,7 +28,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 - `bin/release` script for standardized version tagging and changelog management
 - `.editorconfig` for consistent editor formatting
 - `composer.json` scripts: `test`, `test:dry-run`, `test:verbose`
-- 12 documented deviations from paymo-api-php in OVERRIDES.md
+- 12 documented design decisions in OVERRIDES.md
 
 ### Fixed
 - docs/TECH-STACK.md: replaced stale "TBD" entries with implemented base URL and auth details

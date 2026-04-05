@@ -55,7 +55,7 @@ class Configuration
      * Smart load: if path is a directory, look for niftyquoterapi.config.json in it.
      * If path is a file, load it directly.
      *
-     * @override OVERRIDE-012: Fixes Paymo dirname() bug — checks is_dir() first.
+     * @override OVERRIDE-012: Checks is_dir() before calling dirname().
      */
     public static function overload(string $path): void
     {

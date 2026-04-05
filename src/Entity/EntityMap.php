@@ -81,7 +81,7 @@ class EntityMap
     /**
      * Replace a resource or collection class at runtime.
      *
-     * @override OVERRIDE-011 Fixes Paymo typo AbstractResourcce → AbstractResource
+     * @override OVERRIDE-011 Correct class name AbstractResource
      */
     public static function overload(string $key, string $className, string $type = 'resource'): void
     {
