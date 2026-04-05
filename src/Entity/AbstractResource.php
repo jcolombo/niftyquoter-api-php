@@ -19,18 +19,6 @@ abstract class AbstractResource extends AbstractEntity
         'PROP_TYPES', 'WHERE_OPERATIONS',
     ];
 
-    // Defaults for static analysis — child classes MUST override these
-    protected const LABEL = '';
-    protected const API_ENTITY = '';
-    protected const API_PATH = '';
-    protected const REQUIRED_CREATE = [];
-    protected const READONLY = [];
-    protected const CREATEONLY = [];
-    protected const WRITEONLY = [];
-    protected const INCLUDE_TYPES = [];
-    protected const PROP_TYPES = [];
-    protected const WHERE_OPERATIONS = [];
-
     protected array $props = [];
 
     protected array $loaded = [];
