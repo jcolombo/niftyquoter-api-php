@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 
 ## [Unreleased]
 
+## [0.5.0-alpha] - 2026-04-05
+
 ### Added
 - Full SDK implementation: connection manager, configuration, request builder, error handling, rate limiting, caching, logging
 - 10 resource entity classes: Client, Proposal, Comment, Note, Contact, Item, PricingTable, ServiceTemplate, EmailTemplate, TextBlock
