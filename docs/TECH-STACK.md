@@ -37,5 +37,5 @@ This SDK follows the same patterns as `jcolombo/paymo-api-php`:
 ## API Reference
 
 - **NiftyQuoter API Docs**: https://niftyquoter.docs.apiary.io
-- **Base URL**: TBD (from API docs during development)
-- **Auth**: TBD (from API docs during development)
+- **Base URL**: `https://api.niftyquoter.com/api/v1/` (configured in `default.niftyquoterapi.config.json`)
+- **Auth**: HTTP Basic Authentication — `base64_encode("{email}:{apiKey}")` sent as `Authorization: Basic {encoded}` header on every request
