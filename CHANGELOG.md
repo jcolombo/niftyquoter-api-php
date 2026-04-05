@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 
 ## [Unreleased]
 
+### Changed
+- `fetch()` now returns a single page of results instead of auto-paginating through all pages
+- Added `fetchAll()` for explicit opt-in auto-pagination when all records are needed
+
 ## [0.5.0-alpha] - 2026-04-05
 
 ### Added

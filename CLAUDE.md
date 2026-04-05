@@ -26,6 +26,19 @@ These directories are gitignored and must **never** be committed:
 
 **Worktrees**: If working in a git worktree, read [docs/WORKTREES.md](docs/WORKTREES.md) first — `.ai/`, `.development/`, and `.claude/` must be read/written to the main repo, not the worktree copy.
 
+## Documentation Freshness Rule (MANDATORY)
+
+**After ANY code change**, you MUST check whether the change impacts, negates, updates, or otherwise makes stale any content in:
+
+1. **All tracked `docs/*.md` files** — `docs/TECH-STACK.md`, `docs/WORKTREES.md`
+2. **All tracked root `*.md` files** — `README.md`, `CHANGELOG.md`, `OVERRIDES.md`, `CONTRIBUTING.md`
+
+**How to check:** Read each file and look for references to the code you changed — method names, class names, behavior descriptions, usage examples, architecture claims. If any documentation describes behavior that no longer matches the code, update it immediately.
+
+**CHANGELOG.md** must always have an `[Unreleased]` entry for any functional change (new methods, changed behavior, removed features, breaking changes).
+
+This is not optional. Documentation that contradicts the code is worse than no documentation.
+
 ## Documentation Index
 
 Reference these docs for deeper context before asking the user or making assumptions:

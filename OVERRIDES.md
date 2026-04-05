@@ -26,11 +26,11 @@ Each WHERE condition maps to an individual query parameter: `?search_email=foo&o
 
 ## OVERRIDE-003: 1-Indexed Pagination
 
-**Files**: `src/Entity/AbstractCollection.php` (`$paginationPage`, `fetch()`)
+**Files**: `src/Entity/AbstractCollection.php` (`$paginationPage`, `fetch()`, `fetchAll()`)
 
-Pagination is 1-indexed (`?page=1` is first page).
+Pagination is 1-indexed (`?page=1` is first page). `fetch()` returns a single page; `fetchAll()` auto-paginates through all pages.
 
-**Justification**: NiftyQuoter documents `?page=1` as the first page.
+**Justification**: NiftyQuoter documents `?page=1` as the first page. Single-page default prevents runaway API calls on large collections.
 
 ---
 

@@ -56,7 +56,10 @@ abstract class AbstractCollection extends AbstractEntity implements \Iterator, \
     // ── Fetch ───────────────────────────────────────────────────────────
 
     /**
-     * Execute list request with pagination.
+     * Fetch a single page of results (default behavior).
+     *
+     * Returns one page at the current page/pageSize settings. Does NOT
+     * auto-paginate. Use fetchAll() when you explicitly need every record.
      */
     public function fetch(): static
     {
@@ -66,7 +69,60 @@ abstract class AbstractCollection extends AbstractEntity implements \Iterator, \
         $objectKey = $resourceInstance->objectKey();
         $parentPath = $this->getParentPath();
 
-        // Separate server-side WHERE from client-side HAS filters
+        $serverWheres = array_filter($this->whereConditions, fn($c) => $c->type === 'where');
+        $clientFilters = array_filter($this->whereConditions, fn($c) => $c->type === 'has');
+
+        $response = Request::list(
+            $this->connection,
+            $objectKey,
+            $this->fields,
+            array_values($serverWheres),
+            $this->includeTypes,
+            $this->paginationPage,
+            $this->paginationPageSize,
+            $parentPath
+        );
+
+        if ($response->success && $response->body !== null) {
+            $pluralKey = $resourceInstance::API_PATH;
+            $results = $response->body[$pluralKey]
+                ?? $response->body[$resourceInstance::API_ENTITY]
+                ?? [];
+
+            foreach ($results as $itemData) {
+                $resource = new $this->resourceClass($this->connection);
+                $resource->hydrate($itemData);
+
+                if (!empty($clientFilters) && !$this->applyHasFilters($resource, $clientFilters)) {
+                    continue;
+                }
+
+                $id = $resource->get('id');
+                $this->data[$id] = $resource;
+            }
+
+            // Mark as fully fetched only if this page wasn't full
+            $this->fetchedAll = count($results) < $this->paginationPageSize;
+        }
+
+        $this->iteratorKeys = array_keys($this->data);
+        return $this;
+    }
+
+    /**
+     * Fetch ALL pages of results by auto-paginating until exhausted.
+     *
+     * Use with caution on large collections — this may generate many API
+     * calls and consume significant rate limit budget.
+     */
+    public function fetchAll(): static
+    {
+        $this->validateFetch($this->fields, $this->whereConditions);
+
+        $resourceInstance = new $this->resourceClass($this->connection);
+        $objectKey = $resourceInstance->objectKey();
+        $parentPath = $this->getParentPath();
+
         $serverWheres = array_filter($this->whereConditions, fn($c) => $c->type === 'where');
         $clientFilters = array_filter($this->whereConditions, fn($c) => $c->type === 'has');
 
@@ -88,7 +144,6 @@ abstract class AbstractCollection extends AbstractEntity implements \Iterator, \
                 break;
             }
 
-            // Extract results using plural wrapper key
             $pluralKey = $resourceInstance::API_PATH;
             $results = $response->body[$pluralKey]
                 ?? $response->body[$resourceInstance::API_ENTITY]
@@ -98,7 +153,6 @@ abstract class AbstractCollection extends AbstractEntity implements \Iterator, \
                 $resource = new $this->resourceClass($this->connection);
                 $resource->hydrate($itemData);
 
-                // Apply client-side HAS filters
                 if (!empty($clientFilters) && !$this->applyHasFilters($resource, $clientFilters)) {
                     continue;
                 }

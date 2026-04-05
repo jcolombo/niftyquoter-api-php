@@ -83,15 +83,18 @@ echo $client->email;
 ```php
 use Jcolombo\NiftyquoterApiPhp\Entity\Resource\Proposal;
 
-// Get all proposals
+// Get one page of proposals (default: page 1, up to 100 results)
 $proposals = Proposal::list($nq)->fetch();
 
 foreach ($proposals as $proposal) {
     echo $proposal->name . "\n";
 }
 
-// Get count
-echo "Total proposals: " . count($proposals);
+// Get count of returned results
+echo "Proposals on this page: " . count($proposals);
+
+// Explicitly fetch ALL proposals (auto-paginates through every page)
+$allProposals = Proposal::list($nq)->fetchAll();
 
 // JSON encode directly (collections implement JsonSerializable)
 $json = json_encode($proposals);
@@ -288,27 +291,30 @@ $item->create();
 
 ## Pagination
 
-Collections auto-paginate by default — `fetch()` loops through all pages until the API returns fewer results than the page size.
+By default, `fetch()` returns a **single page** of results. Use `fetchAll()` when you explicitly need every record.
 
 ```php
 use Jcolombo\NiftyquoterApiPhp\Entity\Resource\Client;
 
-// Fetches ALL clients (auto-paginates through all pages)
-$allClients = Client::list($nq)->fetch();
+// Fetch one page (default: page 1, 100 results) — single API call
+$clients = Client::list($nq)->fetch();
 
-// Control page size (still fetches all pages, but in smaller batches)
-$allClients = Client::list($nq)->limit(null, 50)->fetch();
-
-// Fetch a specific page only (manual pagination)
-$page1 = Client::list($nq)->limit(1, 25)->fetch();
+// Control page and page size
 $page2 = Client::list($nq)->limit(2, 25)->fetch();
+
+// Fetch ALL clients (auto-paginates through every page)
+// Use with caution on large collections — may generate many API calls
+$allClients = Client::list($nq)->fetchAll();
+
+// Control page size for fetchAll batches
+$allClients = Client::list($nq)->limit(null, 50)->fetchAll();
 ```
 
 **Key points:**
 - Pages are **1-indexed** (first page is 1)
 - Default page size is 100 (20 for Proposals)
 - `limit($page, $pageSize)` — both parameters are optional
-- Auto-pagination stops when `count(results) < pageSize`
+- `fetch()` returns one page; `fetchAll()` auto-paginates until `count(results) < pageSize`
 
 ---
 
@@ -553,7 +559,7 @@ $json = $client->toJson();
 
 // Collections are JSON-serializable
 $clients = Client::list($nq)->fetch();
-echo json_encode($clients); // Array of all client objects
+echo json_encode($clients); // Array of client objects from one page
 
 // Extract a single field from all items
 $names = $clients->flatten('first_name'); // ['Jane', 'John', ...]
